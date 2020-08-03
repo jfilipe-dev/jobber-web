@@ -1,0 +1,51 @@
+:root {
+  font-size: 38%;
+
+  --color-background: #F0F0F7;
+  --color-1: #E84042;
+  --color-1-dark: #C93133;
+  --color-2: #FECE47;
+  --color-3: #F7A63C;
+  --color-3-dark: #f59414;
+  --color-4: #3943B7;
+  --color-text-dark: #0A1F2D;
+  --color-text-light: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100vh;
+}
+
+body {
+  background: var(--color-background);
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body,
+input,
+button,
+textarea {
+  font: 500 1.6rem Poppins
+}
+
+.container {
+  width: 90vw;
+  max-width: 700px;
+}
+
+@media(min-width: 700px) {
+  :root {
+    font-size: 46.2%;
+  }
+}
