@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logoImg from '../../assets/img/logo.svg';
 import heroImg from '../../assets/img/hero.svg';
 
-import promoveIcon from '../../assets/img/icons/promove.svg';
+import promoveIcon from '../../assets/img/icons/promote.svg';
 import searchIcon from '../../assets/img/icons/search.svg';
 import heartIcon from '../../assets/img/icons/heart.svg';
 
-import './style.css';
+import './styles.css';
 
 function Landing() {
   return (
@@ -25,15 +26,15 @@ function Landing() {
         />
 
         <div className="buttons-container">
-          <a href="#" className="promove">
+          <Link to="/promote" className="promove">
             <img src={promoveIcon} alt="Promover trabalhos"/>
             Promover trabalhos
-          </a>
+          </Link>
 
-          <a href="#" className="search">
+          <Link to="/search" className="search">
             <img src={searchIcon} alt="Procurar freelancers"/>
             Procurar freelancers
-          </a>
+          </Link>
         </div>
 
         <span className="total-connections">

@@ -1,0 +1,77 @@
+#page-freelancer-list {
+  width: 100vw;
+  height: 100vh;
+}
+
+#search-freelancers {
+  margin-top: 3.2rem;
+}
+
+#search-freelancers label {
+  color: var(--color-text-light);
+  opacity: 0.6;
+}
+
+#search-freelancers .input-block {
+  position: relative;
+}
+
+#search-freelancers .input-block + .input-block{
+  margin-top: 1.8rem;
+}
+
+#search-freelancers .input-block label {
+  font-size: 2.2rem;
+}
+
+#search-freelancers .input-block input {
+  width: 100%;
+  height: 5.6rem;
+  margin-top: 0.8rem;
+  border-radius: 0.8rem;
+  border: none;
+  outline: 0;
+  padding: 0 1.6rem;
+  font: 1.6rem Archivo;
+}
+
+#search-freelancers .input-block:focus-within::after {
+  width: calc(100% - 3.2rem);
+  height: 2px;
+  content: '';
+  background: var(--color-2);
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 0
+}
+
+#page-freelancer-list main {
+  margin: 3.2rem auto;
+  width: 90%;
+}
+
+@media (min-width: 700px) {
+  #page-freelancer-list {
+    max-width: 100%;
+  }
+
+  #search-freelancers {
+    width: 740px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+    position: absolute;
+    bottom: -20px;
+  }
+
+  #search-freelancers .input-block + .input-block{
+    margin-top: 0;
+  }
+
+  #page-freelancer-list main {
+    padding: 3.2rem 0;
+    max-width: 740px;
+    margin: 0 auto;
+  }
+}

@@ -8,7 +8,12 @@
   --color-3: #F7A63C;
   --color-3-dark: #f59414;
   --color-4: #3943B7;
+  --color-4-dark: #30399C;
+  --color-5: #51CB20;
+  --color-6: #FCFCFC;
+  --color-7: #F5F5F5;
   --color-text-dark: #0A1F2D;
+  --color-text: #7F7F7F;
   --color-text-light: #FFFFFF;
 }
 
@@ -36,7 +41,7 @@ body,
 input,
 button,
 textarea {
-  font: 500 1.6rem Poppins
+  font: 500 1.6rem Poppins;
 }
 
 .container {
