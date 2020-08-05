@@ -21,6 +21,19 @@ function FreelancerItem() {
       Entusiasta em Design de interfaces e UX, o Figma é a minha ferramenta de criação.
       </p>
 
+      <p>
+        <strong>Habilidades</strong>
+        <p>Iniciante em <span>react</span></p>
+        <p>Experiente em <span>node</span></p>
+        <p>Profissional em <span>javascript</span></p>
+        <p>Iniciante em <span>Figma</span></p>
+        <p>Profissional em <span>HTML</span></p>
+      </p>
+
+      <p>
+        <a href="https://github.com/jfilipe-dev">Acessar portifólio</a>
+      </p>
+
       <footer>
         <p>
           Preço/hora de trabalho
