@@ -1,49 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import whatsappIcon from '../../assets/img/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-function FreelancerItem() {
+export interface Freelancer {
+    id: number,
+    name: string,
+    avatar: string,
+    whatsapp: string,
+    bio: string,
+    portifolio: string,
+    service: string,
+    cost: number,
+}
+
+interface FreelancerItemProps {
+  freelancer : Freelancer
+}
+
+interface SkillItem {
+    id: number;
+    skill: string;
+    level: string;
+}
+
+const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
+  const [skills, setSkills] = useState<SkillItem[]>([]);
+
+  function createNewConnection() {
+    api.post('/connections', {
+      user_id: freelancer.id
+    });
+  }
+
+  useEffect(() => {
+    api.get(`/skills/${freelancer.id}`).then((response) => {
+      const { skills } = response.data;
+      setSkills(skills)
+    })
+  }, [freelancer.id, skills])
+
   return (
     <article className="freelancer-item">
       <header>
-        <img src="https://avatars3.githubusercontent.com/u/55659197?s=460&u=c0c3565ad51e676592c2b47436c7ae99cb902eef&v=4" alt="João Filipe"/>
+        <img src={freelancer.avatar} alt={freelancer.name}/>
         <div>
-          <strong>João Filipe</strong>
-          <span>Desenvolvedor web</span>
+          <strong>{freelancer.name}</strong>
+          <span>{freelancer.service}</span>
         </div>
       </header>
 
-      <p>
-      Estudante de Engenharia de Software na Universidade Tecnológica Federal do Paraná (UTFPR), Desenvolvedor Frontend com React, Mobile com React Native e Backend com Node.
-
-      Entusiasta em Design de interfaces e UX, o Figma é a minha ferramenta de criação.
-      </p>
+      <p>{freelancer.bio}</p>
 
       <p>
         <strong>Habilidades</strong>
-        <span className="skill-item">Iniciante em <span>react</span></span>
-        <span className="skill-item">Experiente em <span>node</span></span>
-        <span className="skill-item">Profissional em <span>javascript</span></span>
-        <span className="skill-item">Iniciante em <span>Figma</span></span>
-        <span className="skill-item">Profissional em <span>HTML</span></span>
+        {skills.map(skill => {
+          return (
+            (
+              <span key={skill.id} className="skill-item">{skill.level} em <span>{skill.skill}</span></span>
+            )
+          )
+        })}
       </p>
 
       <p>
-        <a href="https://github.com/jfilipe-dev">Acessar portifólio</a>
+        <a href={freelancer.portifolio}>Acessar portifólio</a>
       </p>
 
       <footer>
         <p>
           Preço/hora de trabalho
-          <strong>R$ 60,00</strong>
+          <strong>{freelancer.cost}</strong>
         </p>
 
-        <button type="button">
+        <a onClick={createNewConnection} href={`https://wa.me/${freelancer.whatsapp}`}>
           <img src={whatsappIcon} alt="Whatsapp"/>
           Entrar em contato.
-        </button>
+        </a>
       </footer>
     </article>
   );

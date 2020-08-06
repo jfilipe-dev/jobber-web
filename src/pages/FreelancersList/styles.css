@@ -15,6 +15,23 @@
   background: var(--color-text-light);
 }
 
+#search-freelancers button {
+  width: 100%;
+  height: 5.8rem;
+  background: var(--color-3);
+  color: var(--color-text-light);
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font: 700 1.6rem Archivo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-top: 4rem;
+}
+
 #page-freelancer-list main {
   margin: 3.2rem auto;
   width: 90%;
@@ -28,7 +45,7 @@
   #search-freelancers {
     width: 740px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 16px;
     position: absolute;
     bottom: -20px;
@@ -36,6 +53,10 @@
 
   #search-freelancers .select-block + .select-block {
     margin-top: 0;
+  }
+
+  #search-freelancers button:hover {
+    transform: translateY(-5px);
   }
 
   #page-freelancer-list main {

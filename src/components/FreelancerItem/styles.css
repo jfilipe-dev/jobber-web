@@ -71,7 +71,7 @@
   display: block;
 }
 
-.freelancer-item footer button {
+.freelancer-item footer a {
   width: 20rem;
   height: 5.6rem;
   background: var(--color-5);
@@ -84,13 +84,14 @@
   align-items: center;
   justify-content: space-evenly;
   transition: 0.2s;
+  text-decoration: none;
 }
 
-.freelancer-item footer button:hover {
+.freelancer-item footer a:hover {
   transform: translateY(-5px);
 }
 
-.freelancer-item footer button img {
+.freelancer-item footer a img {
   width: 2.6rem;
 }
 
@@ -109,13 +110,13 @@
     margin-left: 1.6rem;
   }
 
-  .freelancer-item footer button {
+  .freelancer-item footer a {
     width: 24.5rem;
     font-size: 1.6rem;
     justify-content: center;
   }
 
-  .freelancer-item footer button img {
+  .freelancer-item footer a img {
     margin-right: 1.6rem;
   }
 }
