@@ -47,11 +47,11 @@
   font-weight: 700;
 }
 
-.freelancer-item > p > strong, p {
+.freelancer-item > p > strong, .skill-item {
   display: block;
 }
 
-.freelancer-item > p > p span{
+.freelancer-item > p > .skill-item span{
   color: var(--color-4);
 }
 

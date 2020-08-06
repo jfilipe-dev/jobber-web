@@ -23,11 +23,11 @@ function FreelancerItem() {
 
       <p>
         <strong>Habilidades</strong>
-        <p>Iniciante em <span>react</span></p>
-        <p>Experiente em <span>node</span></p>
-        <p>Profissional em <span>javascript</span></p>
-        <p>Iniciante em <span>Figma</span></p>
-        <p>Profissional em <span>HTML</span></p>
+        <span className="skill-item">Iniciante em <span>react</span></span>
+        <span className="skill-item">Experiente em <span>node</span></span>
+        <span className="skill-item">Profissional em <span>javascript</span></span>
+        <span className="skill-item">Iniciante em <span>Figma</span></span>
+        <span className="skill-item">Profissional em <span>HTML</span></span>
       </p>
 
       <p>
