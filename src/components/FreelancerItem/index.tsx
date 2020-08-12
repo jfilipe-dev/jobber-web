@@ -4,6 +4,7 @@ import whatsappIcon from '../../assets/img/icons/whatsapp.svg';
 
 import './styles.css';
 import api from '../../services/api';
+import formatValue from '../../utils/formatValue';
 
 export interface Freelancer {
     id: number,
@@ -72,7 +73,7 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
       <footer>
         <p>
           Preço/hora de trabalho
-          <strong>{freelancer.cost}</strong>
+          <strong>{formatValue(freelancer.cost)}</strong>
         </p>
 
         <a onClick={createNewConnection} href={`https://wa.me/${freelancer.whatsapp}`}>

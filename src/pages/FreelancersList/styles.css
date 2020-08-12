@@ -37,6 +37,31 @@
   width: 90%;
 }
 
+#empty-freelancer-list {
+  margin-top: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#empty-freelancer-list img {
+  width: 5rem;
+}
+
+#empty-freelancer-list h1 {
+  margin-top: 1.2rem;
+  color: var(--color-text);
+  font-size: 4rem;
+}
+
+#empty-freelancer-list p {
+  margin-top: 1.2rem;
+  color: var(--color-text);
+  max-width: 200px;
+  text-align: center;
+}
+
 @media (min-width: 700px) {
   #page-freelancer-list {
     max-width: 100%;

@@ -1,8 +1,9 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 
-// Components
 import PageHeader from '../../components/PageHeader/Index';
 import FreelancerItem, { Freelancer } from '../../components/FreelancerItem';
+
+import sadIcon from '../../assets/img/icons/sad.svg';
 
 import './styles.css';
 import Select from '../../components/Select';
@@ -10,27 +11,40 @@ import api from '../../services/api';
 
 function FreelancersList() {
   const [freelancers, setFreelancers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [service, setService] = useState('');
   const [cost, setCost] = useState('');
 
-  function searchFreelancers(e: FormEvent) {
-    e.preventDefault();
-
+  function loadFreelancers() {
+    setLoading(true);
     api.get('/services', {
       params: {
         service,
         cost
       }
     }).then((response) => {      
-      setFreelancers(response.data)
+      setFreelancers(response.data);
+      setLoading(false);
     });
   }
+
+  function handelFiltersSubmit(e: FormEvent) {
+    e.preventDefault();
+    loadFreelancers();
+    setCost('');
+    setService('');
+  }
+
+  useEffect(() => {
+    loadFreelancers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   return (
     <div id="page-freelancer-list" className="container">
       <PageHeader title="Esses são os Jobbers disponíveis.">
-        <form id="search-freelancers" onSubmit={searchFreelancers}>
+        <form id="search-freelancers" onSubmit={handelFiltersSubmit}>
         <Select
             label="Serviço"
             name="service"
@@ -64,17 +78,24 @@ function FreelancersList() {
           />
 
           <button type="submit">
-            Buscar
+            {loading ? 'Carregando...' : 'Filtrar'}
           </button>
         </form>
       </PageHeader>
 
       <main>
-        {freelancers.map((freelancer: Freelancer) => {
+        {freelancers.length > 0 ? freelancers.map((freelancer: Freelancer) => {
           return (
             <FreelancerItem key={freelancer.id} freelancer={freelancer} />
           )
-        })}
+        }) : (
+          <div id="empty-freelancer-list">
+            <img src={sadIcon} alt="Ícone triste"/>
+            <h1>Ops...</h1>
+            <p>Não encontramos jobbers com os filtros que você procurou.</p>
+          </div>
+        )
+      }
       </main>
     </div>
   )
