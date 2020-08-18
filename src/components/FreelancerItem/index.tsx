@@ -67,7 +67,7 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
       </p>
 
       <p>
-        <a href={freelancer.portifolio}>Acessar portifólio</a>
+        {freelancer.portifolio ? <a href={freelancer.portifolio}>Acessar portifólio</a> : 'Esse jobber não possui portifólio.'}
       </p>
 
       <footer>
