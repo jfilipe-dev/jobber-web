@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import whatsappIcon from '../../assets/img/icons/whatsapp.svg';
+import whatsappIcon from "../../assets/img/icons/whatsapp.svg";
 
-import './styles.css';
-import api from '../../services/api';
-import formatValue from '../../utils/formatValue';
+import "./styles.css";
+import api from "../../services/api";
+import formatValue from "../../utils/formatValue";
 
 export interface Freelancer {
   id: number;
@@ -32,10 +32,12 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
   const [imageError, setImageError] = useState(false);
 
   function createNewConnection() {
-    api.post('/connections', {
+    api.post("/connections", {
       user_id: freelancer.id,
     });
   }
+
+  const currentSkills = skills.filter((item) => item.skill && item.level);
 
   useEffect(() => {
     api.get(`/skills/${freelancer.id}`).then((response) => {
@@ -62,12 +64,12 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
         </div>
       </header>
 
-      {freelancer.bio !== '' ? <p>{freelancer.bio}</p> : <p>Sem bio</p>}
+      {freelancer.bio !== "" ? <p>{freelancer.bio}</p> : <p>Sem bio</p>}
 
-      {skills.length > 0 ? (
+      {currentSkills.length > 0 ? (
         <p>
           <strong>Habilidades</strong>
-          {skills.map((skill) => {
+          {currentSkills.map((skill) => {
             return (
               <span key={skill.id} className="skill-item">
                 {skill.level} em <span>{skill.skill}</span>
@@ -84,7 +86,7 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
           <a href={freelancer.portifolio}>Acessar portifólio</a>
         </p>
       ) : (
-        'Esse jobber não possui portifólio.'
+        <p>Esse jobber não possui portifólio.</p>
       )}
 
       <footer>
