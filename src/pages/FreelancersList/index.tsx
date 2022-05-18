@@ -4,42 +4,42 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
-} from "react";
+} from 'react';
 
-import PageHeader from "../../components/PageHeader/Index";
-import FreelancerItem, { Freelancer } from "../../components/FreelancerItem";
+import PageHeader from '../../components/PageHeader/Index';
+import FreelancerItem, { Freelancer } from '../../components/FreelancerItem';
 
-import sadIcon from "../../assets/img/icons/sad.svg";
+import sadIcon from '../../assets/img/icons/sad.svg';
 
-import "./styles.css";
-import Select from "../../components/Select";
-import api from "../../services/api";
+import './styles.css';
+import Select from '../../components/Select';
+import api from '../../services/api';
 
 function FreelancersList() {
   const [freelancers, setFreelancers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [service, setService] = useState("");
-  const [cost, setCost] = useState("");
-  const [hasPortfolio, setHasPortfolio] = useState("false");
+  const [service, setService] = useState('');
+  const [cost, setCost] = useState('');
+  const [hasPortfolio, setHasPortfolio] = useState('false');
 
   const loadFreelancers = useCallback(() => {
     setLoading(true);
     api
-      .get("/services", {
+      .get('/services', {
         params: {
           service,
           cost,
         },
       })
       .then((response) => {
-        setFreelancers(response.data);
+        setFreelancers(response.data.reverse());
         setLoading(false);
       });
   }, [cost, service]);
 
   const data = useMemo(() => {
-    if (hasPortfolio === "true") {
+    if (hasPortfolio === 'true') {
       return freelancers.filter((freelancer: any) => freelancer.portifolio);
     }
 
@@ -62,22 +62,22 @@ function FreelancersList() {
               setService(e.target.value);
             }}
             options={[
-              { value: "Desenvolvimento web", label: "Desenvolvimento web" },
+              { value: 'Desenvolvimento web', label: 'Desenvolvimento web' },
               {
-                value: "Desenvolvimento mobile",
-                label: "Desenvolvimento mobile",
+                value: 'Desenvolvimento mobile',
+                label: 'Desenvolvimento mobile',
               },
-              { value: "Social media", label: "Social media" },
-              { value: "Gestão de tráfego", label: "Gestão de tráfego" },
-              { value: "Redação", label: "Redação" },
+              { value: 'Social media', label: 'Social media' },
+              { value: 'Gestão de tráfego', label: 'Gestão de tráfego' },
+              { value: 'Redação', label: 'Redação' },
               {
-                value: "Design de Interfaces",
-                label: "Design de Interfaces",
+                value: 'Design de Interfaces',
+                label: 'Design de Interfaces',
               },
-              { value: "Tradução", label: "Tradução" },
-              { value: "Criação de logo", label: "Criação de logo" },
-              { value: "Edição de vídeo", label: "Edição de vídeo" },
-              { value: "Fotografia", label: "Fotografia" },
+              { value: 'Tradução', label: 'Tradução' },
+              { value: 'Criação de logo', label: 'Criação de logo' },
+              { value: 'Edição de vídeo', label: 'Edição de vídeo' },
+              { value: 'Fotografia', label: 'Fotografia' },
             ]}
           />
 
@@ -89,16 +89,16 @@ function FreelancersList() {
               setCost(e.target.value);
             }}
             options={[
-              { value: "0-20", label: "Até R$ 20,00" },
+              { value: '0-20', label: 'Até R$ 20,00' },
               {
-                value: "20-50",
-                label: "Acima de R$20,00 e abaixo de R$ 50,00",
+                value: '20-50',
+                label: 'Acima de R$20,00 e abaixo de R$ 50,00',
               },
               {
-                value: "50-100",
-                label: "Acima de R$50,00 e abaixo de R$ 100,00",
+                value: '50-100',
+                label: 'Acima de R$50,00 e abaixo de R$ 100,00',
               },
-              { value: "100", label: "Acima de R$100,00" },
+              { value: '100', label: 'Acima de R$100,00' },
             ]}
           />
 
@@ -110,12 +110,12 @@ function FreelancersList() {
               setHasPortfolio(e.target.value);
             }}
             options={[
-              { value: "true", label: "Sim" },
-              { value: "false", label: "Não" },
+              { value: 'true', label: 'Sim' },
+              { value: 'false', label: 'Não' },
             ]}
           />
 
-          <button type="button">{loading ? "Carregando..." : "Filtrar"}</button>
+          <button type="button">{loading ? 'Carregando...' : 'Filtrar'}</button>
         </form>
       </PageHeader>
 

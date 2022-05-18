@@ -1,18 +1,18 @@
-import React, { useState, FormEvent } from "react";
-import { useHistory } from "react-router-dom";
-import * as yup from "yup";
-import getYupValidationErrors from "../../utils/getValiationErros";
+import React, { useState, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
+import * as yup from 'yup';
+import getYupValidationErrors from '../../utils/getValiationErros';
 
-import PageHeader from "../../components/PageHeader/Index";
+import PageHeader from '../../components/PageHeader/Index';
 
-import Input from "../../components/Input";
+import Input from '../../components/Input';
 
-import warningIcon from "../../assets/img/icons/warning.svg";
+import warningIcon from '../../assets/img/icons/warning.svg';
 
-import "./styles.css";
-import Textarea from "../../components/TextArea";
-import Select from "../../components/Select";
-import api from "../../services/api";
+import './styles.css';
+import Textarea from '../../components/TextArea';
+import Select from '../../components/Select';
+import api from '../../services/api';
 
 type Errros = {
   name?: string;
@@ -23,10 +23,10 @@ type Errros = {
 };
 
 const schema = yup.object().shape({
-  name: yup.string().required("O nome é obrigatório"),
-  whatsapp: yup.string().required("O numéro do whatsapp é obrigatório"),
-  service: yup.string().required("O serviço é obrigatório"),
-  cost: yup.number().min(1, "O valor é obrigatório"),
+  name: yup.string().required('O nome é obrigatório'),
+  whatsapp: yup.string().required('O numéro do whatsapp é obrigatório'),
+  service: yup.string().required('O serviço é obrigatório'),
+  cost: yup.number().min(1, 'O valor é obrigatório'),
   // skills: yup
   //   .array(
   //     yup.object().shape({
@@ -41,23 +41,23 @@ const schema = yup.object().shape({
 function FreelancerForm() {
   const history = useHistory();
 
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [portifolio, setPortifolio] = useState("");
-  const [bio, setBio] = useState("");
+  const [name, setName] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [portifolio, setPortifolio] = useState('');
+  const [bio, setBio] = useState('');
 
-  const [service, setService] = useState("");
-  const [cost, setCost] = useState("");
+  const [service, setService] = useState('');
+  const [cost, setCost] = useState('');
 
-  const [skillItems, setSkillItems] = useState([{ skill: "", level: "" }]);
+  const [skillItems, setSkillItems] = useState([{ skill: '', level: '' }]);
 
   const [errors, setErrors] = useState<Errros>({} as Errros);
 
   function addNewSkillItem() {
     const newSkillItem = {
-      skill: "",
-      level: "",
+      skill: '',
+      level: '',
     };
 
     setSkillItems([...skillItems, newSkillItem]);
@@ -81,7 +81,7 @@ function FreelancerForm() {
     try {
       await schema.validate(body, { abortEarly: false });
 
-      await api.post("/services", {
+      await api.post('/services', {
         name,
         avatar,
         whatsapp,
@@ -91,18 +91,18 @@ function FreelancerForm() {
         cost: Number(cost),
         skills: skillItems,
       });
-      alert("Cadastro realizado com sucesso!");
+      alert('Cadastro realizado com sucesso!');
       // history.push("/");
     } catch (error) {
       if (error instanceof yup.ValidationError) {
         const errorsValidate = getYupValidationErrors(error);
         console.log(
-          "🚀 ~ file: index.tsx ~ line 82 ~ handleCreateClass ~ errorsValidate",
+          '🚀 ~ file: index.tsx ~ line 82 ~ handleCreateClass ~ errorsValidate',
           errorsValidate
         );
         setErrors(errorsValidate);
       } else {
-        alert("Erro no cadastro!");
+        alert('Erro no cadastro!');
       }
     }
   }
@@ -190,22 +190,22 @@ function FreelancerForm() {
                 setService(e.target.value);
               }}
               options={[
-                { value: "Desenvolvimento web", label: "Desenvolvimento web" },
+                { value: 'Desenvolvimento web', label: 'Desenvolvimento web' },
                 {
-                  value: "Desenvolvimento mobile",
-                  label: "Desenvolvimento mobile",
+                  value: 'Desenvolvimento mobile',
+                  label: 'Desenvolvimento mobile',
                 },
-                { value: "Social media", label: "Social media" },
-                { value: "Gestão de tráfego", label: "Gestão de tráfego" },
-                { value: "Redação", label: "Redação" },
+                { value: 'Social media', label: 'Social media' },
+                { value: 'Gestão de tráfego', label: 'Gestão de tráfego' },
+                { value: 'Redação', label: 'Redação' },
                 {
-                  value: "Design de Interfaces",
-                  label: "Design de Interfaces",
+                  value: 'Design de Interfaces',
+                  label: 'Design de Interfaces',
                 },
-                { value: "Tradução", label: "Tradução" },
-                { value: "Criação de logo", label: "Criação de logo" },
-                { value: "Edição de vídeo", label: "Edição de vídeo" },
-                { value: "Fotografia", label: "Fotografia" },
+                { value: 'Tradução', label: 'Tradução' },
+                { value: 'Criação de logo', label: 'Criação de logo' },
+                { value: 'Edição de vídeo', label: 'Edição de vídeo' },
+                { value: 'Fotografia', label: 'Fotografia' },
               ]}
             />
             {errors.service && (
@@ -247,7 +247,7 @@ function FreelancerForm() {
                     name="skill"
                     value={skillItem.skill}
                     onChange={(e) =>
-                      setSkillItemValue(index, "skill", e.target.value)
+                      setSkillItemValue(index, 'skill', e.target.value)
                     }
                   />
 
@@ -256,12 +256,12 @@ function FreelancerForm() {
                     name="level"
                     value={skillItem.level}
                     onChange={(e) =>
-                      setSkillItemValue(index, "level", e.target.value)
+                      setSkillItemValue(index, 'level', e.target.value)
                     }
                     options={[
-                      { value: "Iniciante", label: "Iniciante" },
-                      { value: "Intermediário", label: "Intermediário" },
-                      { value: "Avançado", label: "Avançado" },
+                      { value: 'Iniciante', label: 'Iniciante' },
+                      { value: 'Intermediário', label: 'Intermediário' },
+                      { value: 'Avançado', label: 'Avançado' },
                     ]}
                   />
                 </div>
