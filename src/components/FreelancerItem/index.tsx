@@ -29,6 +29,7 @@ interface SkillItem {
 
 const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
   const [skills, setSkills] = useState<SkillItem[]>([]);
+  const [imageError, setImageError] = useState(false);
 
   function createNewConnection() {
     api.post("/connections", {
@@ -45,7 +46,16 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
   return (
     <article className="freelancer-item">
       <header>
-        <img src={freelancer.avatar} alt={freelancer.name} />
+        <img
+          src={
+            imageError
+              ? `https://avatars.dicebear.com/api/adventurer-neutral/${Math.random()}.svg`
+              : freelancer.avatar
+          }
+          alt={freelancer.name}
+          loading="lazy"
+          onError={() => setImageError(true)}
+        />
         <div>
           <strong>{freelancer.name}</strong>
           <span>{freelancer.service}</span>
