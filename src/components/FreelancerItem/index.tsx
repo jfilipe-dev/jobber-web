@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import whatsappIcon from "../../assets/img/icons/whatsapp.svg";
+import whatsappIcon from '../../assets/img/icons/whatsapp.svg';
 
-import "./styles.css";
-import api from "../../services/api";
-import formatValue from "../../utils/formatValue";
+import './styles.css';
+import api from '../../services/api';
+import formatValue from '../../utils/formatValue';
 
 export interface Freelancer {
   id: number;
@@ -32,7 +32,7 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
   const [imageError, setImageError] = useState(false);
 
   function createNewConnection() {
-    api.post("/connections", {
+    api.post('/connections', {
       user_id: freelancer.id,
     });
   }
@@ -62,26 +62,30 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
         </div>
       </header>
 
-      <p>{freelancer.bio}</p>
+      {freelancer.bio !== '' ? <p>{freelancer.bio}</p> : <p>Sem bio</p>}
 
-      <p>
-        <strong>Habilidades</strong>
-        {skills.map((skill) => {
-          return (
-            <span key={skill.id} className="skill-item">
-              {skill.level} em <span>{skill.skill}</span>
-            </span>
-          );
-        })}
-      </p>
+      {skills.length > 0 ? (
+        <p>
+          <strong>Habilidades</strong>
+          {skills.map((skill) => {
+            return (
+              <span key={skill.id} className="skill-item">
+                {skill.level} em <span>{skill.skill}</span>
+              </span>
+            );
+          })}
+        </p>
+      ) : (
+        <p>Habilidades não cadastradas</p>
+      )}
 
-      <p>
-        {freelancer.portifolio ? (
+      {freelancer.portifolio ? (
+        <p>
           <a href={freelancer.portifolio}>Acessar portifólio</a>
-        ) : (
-          "Esse jobber não possui portifólio."
-        )}
-      </p>
+        </p>
+      ) : (
+        'Esse jobber não possui portifólio.'
+      )}
 
       <footer>
         <p>

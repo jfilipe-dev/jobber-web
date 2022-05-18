@@ -33,7 +33,7 @@ function FreelancersList() {
         },
       })
       .then((response) => {
-        setFreelancers(response.data);
+        setFreelancers(response.data.reverse());
         setLoading(false);
       });
   }, [cost, service]);
