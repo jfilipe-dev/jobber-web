@@ -3,6 +3,15 @@
   height: 100vh;
 }
 
+.error {
+  margin-bottom: 20px;
+}
+
+.error-text {
+  font-size: 2rem;
+  color: var(--color-1);
+}
+
 #page-freelancer-form .page-header .header-content {
   margin-bottom: 6.4rem;
 }
@@ -118,7 +127,7 @@
   }
 
   #page-freelancer-form main fieldset {
-    padding: 0 6.4rem
+    padding: 0 6.4rem;
   }
 
   #page-freelancer-form main footer {

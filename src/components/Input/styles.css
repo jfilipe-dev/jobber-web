@@ -2,13 +2,18 @@
   position: relative;
 }
 
-.input-block + .input-block{
+.input-block + .input-block {
   margin-top: 1.8rem;
 }
 
 .input-block label {
   font-size: 2.2rem;
   color: var(--color-text-dark);
+}
+
+.input-block small {
+  font-size: 2rem;
+  color: var(--color-1);
 }
 
 .input-block input {
@@ -26,10 +31,10 @@
 .input-block:focus-within::after {
   width: calc(100% - 3.2rem);
   height: 2px;
-  content: '';
+  content: "";
   background: var(--color-2);
   position: absolute;
   left: 1.6rem;
   right: 1.6rem;
-  bottom: 0
+  bottom: 0;
 }
