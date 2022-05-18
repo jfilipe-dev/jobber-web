@@ -62,6 +62,7 @@ function FreelancersList() {
               setService(e.target.value);
             }}
             options={[
+              { value: "", label: "Todos" },
               { value: "Desenvolvimento web", label: "Desenvolvimento web" },
               {
                 value: "Desenvolvimento mobile",
@@ -89,6 +90,7 @@ function FreelancersList() {
               setCost(e.target.value);
             }}
             options={[
+              { value: "", label: "Todos" },
               { value: "0-20", label: "Até R$ 20,00" },
               {
                 value: "20-50",
@@ -114,8 +116,6 @@ function FreelancersList() {
               { value: "false", label: "Não" },
             ]}
           />
-
-          <button type="button">{loading ? "Carregando..." : "Filtrar"}</button>
         </form>
       </PageHeader>
 
@@ -133,6 +133,8 @@ function FreelancersList() {
             <p>Não encontramos jobbers com os filtros que você procurou.</p>
           </div>
         )}
+
+        {loading && <div id="empty-freelancer-list">Carregando...</div>}
       </main>
     </div>
   );
