@@ -1,20 +1,20 @@
 :root {
   font-size: 38%;
 
-  --color-background: #F0F0F7;
-  --color-1: #E84042;
-  --color-1-dark: #C93133;
-  --color-2: #FECE47;
-  --color-3: #F7A63C;
+  --color-background: #f0f0f7;
+  --color-1: #e84042;
+  --color-1-dark: #c93133;
+  --color-2: #fece47;
+  --color-3: #f7a63c;
   --color-3-dark: #f59414;
-  --color-4: #3943B7;
-  --color-4-dark: #30399C;
-  --color-5: #51CB20;
-  --color-6: #FCFCFC;
-  --color-7: #F5F5F5;
-  --color-text-dark: #0A1F2D;
-  --color-text: #7F7F7F;
-  --color-text-light: #FFFFFF;
+  --color-4: #3943b7;
+  --color-4-dark: #30399c;
+  --color-5: #51cb20;
+  --color-6: #fcfcfc;
+  --color-7: #f5f5f5;
+  --color-text-dark: #0a1f2d;
+  --color-text: #7f7f7f;
+  --color-text-light: #ffffff;
 }
 
 * {
@@ -23,8 +23,10 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
-  height: 100vh;
+html,
+body,
+#root {
+  min-height: 100vh;
 }
 
 body {
@@ -49,7 +51,7 @@ textarea {
   max-width: 700px;
 }
 
-@media(min-width: 700px) {
+@media (min-width: 700px) {
   :root {
     font-size: 46.2%;
   }

@@ -46,6 +46,13 @@
   margin-top: 2.4rem;
 }
 
+.header-content .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 @media (min-width: 700px) {
   .page-header {
     height: 280px;

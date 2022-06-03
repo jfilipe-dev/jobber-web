@@ -1,5 +1,6 @@
 .input-block {
   position: relative;
+  flex: 1;
 }
 
 .input-block + .input-block {

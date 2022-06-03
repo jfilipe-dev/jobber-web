@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import whatsappIcon from "../../assets/img/icons/whatsapp.svg";
 
 import "./styles.css";
 import api from "../../services/api";
 import formatValue from "../../utils/formatValue";
+import CustomModal from "../Modal";
+import Input from "../Input";
+import Textarea from "../TextArea";
 
 export interface Freelancer {
   id: number;
@@ -30,11 +33,22 @@ interface SkillItem {
 const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
   const [skills, setSkills] = useState<SkillItem[]>([]);
   const [imageError, setImageError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [bio, setBio] = useState("");
 
-  function createNewConnection() {
-    api.post("/connections", {
+  const image = useMemo(
+    () =>
+      `https://avatars.dicebear.com/api/adventurer-neutral/${Math.random()}.svg`,
+    []
+  );
+
+  async function createNewConnection() {
+    await api.post("/connections", {
       user_id: freelancer.id,
+      message: bio,
     });
+    setShowModal(false);
+    alert("Conexão criada com sucesso!");
   }
 
   const currentSkills = skills.filter((item) => item.skill && item.level);
@@ -47,13 +61,33 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
 
   return (
     <article className="freelancer-item">
+      <CustomModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Entrar em contato"
+      >
+        <Textarea
+          label="Descreva seu projeto"
+          name="bio"
+          value={bio}
+          onChange={(e) => {
+            setBio(e.target.value);
+          }}
+        />
+        <button
+          style={{
+            marginTop: "40px",
+          }}
+          type="button"
+          onClick={createNewConnection}
+        >
+          Enviar contato
+        </button>
+      </CustomModal>
+
       <header>
         <img
-          src={
-            imageError
-              ? `https://avatars.dicebear.com/api/adventurer-neutral/${Math.random()}.svg`
-              : freelancer.avatar
-          }
+          src={imageError ? image : freelancer.avatar}
           alt={freelancer.name}
           loading="lazy"
           onError={() => setImageError(true)}
@@ -95,13 +129,7 @@ const FreelancerItem: React.FC<FreelancerItemProps> = ({ freelancer }) => {
           <strong>{formatValue(freelancer.cost)}</strong>
         </p>
 
-        <a
-          onClick={createNewConnection}
-          href={`https://wa.me/${freelancer.whatsapp}`}
-        >
-          <img src={whatsappIcon} alt="Whatsapp" />
-          Entrar em contato.
-        </a>
+        <a onClick={() => setShowModal(true)}>Entrar em contato.</a>
       </footer>
     </article>
   );

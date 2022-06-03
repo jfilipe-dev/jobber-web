@@ -1,8 +1,9 @@
 .select-block {
   position: relative;
+  flex: 1;
 }
 
-.select-block + .select-block{
+.select-block + .select-block {
   margin-top: 1.8rem;
 }
 
@@ -26,10 +27,10 @@
 .select-block:focus-within::after {
   width: calc(100% - 3.2rem);
   height: 2px;
-  content: '';
+  content: "";
   background: var(--color-2);
   position: absolute;
   left: 1.6rem;
   right: 1.6rem;
-  bottom: 0
+  bottom: 0;
 }
